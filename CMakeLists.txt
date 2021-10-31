@@ -6,4 +6,6 @@ cmake_minimum_required (VERSION 3.8)
 project ("Virtual Machine Concept")
 
 # Include sub-projects.
+add_subdirectory ("Identifiers")
 add_subdirectory ("Vmc")
+add_subdirectory ("Asmc")

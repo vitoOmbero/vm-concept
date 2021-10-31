@@ -1,57 +1,5 @@
 ﻿#include "Vmc.h"
 
-const std::string_view OpCodeStr(InstructionCode ic)
-{
-	switch (ic)
-	{
-	case JG:
-		return { "JG" };
-	case JNE:
-		return { "JNE" };
-	case CMP:
-		return { "CMP" };
-	case JMP:
-		return { "JMP" };
-	case ADD:
-		return { "ADD" };
-	case OUT:
-		return { "OUT" };
-	case PSH:
-		return { "PSH" };
-	case SUM:
-		return { "SUM" };
-	case POP:
-		return { "POP" };
-	case SET:
-		return { "SET" };
-	case HLT:
-		return { "HLT" };
-	default:
-		return { "Undocumentated Instruction Code" };
-	}
-};
-
-const std::string_view RegCodeStr(RegisterCode rc)
-{
-	switch (rc)
-	{
-	case IP:
-		return { "IP" };
-	case SP:
-		return { "SP" };
-	case A:
-		return { "A" };
-	case B:
-		return { "B" };
-	case C:
-		return { "C" };
-	case NREG:
-		return { "NREG" };
-	default:
-		return { "Undocumentated Register Code" };
-	}
-}
-
 void VirtualMachine::Show(const std::string_view& text)
 {
 	if (!m_traceMode){
@@ -75,11 +23,11 @@ void VirtualMachine::Show(InstructionCode opCode, const ValueType* val)
 	}
 	if (val == nullptr)
 	{
-		std::cout << "VM| OpCode: " << OpCodeStr(opCode) << std::endl;
+		std::cout << "VM| OpCode: " << Str(opCode) << std::endl;
 	}
 	else
 	{
-		std::cout << "VM| OpCode: " << OpCodeStr(opCode) << " Param:" << *val << std::endl;
+		std::cout << "VM| OpCode: " << Str(opCode) << " Param:" << *val << std::endl;
 	}
 }
 void VirtualMachine::Show(InstructionCode opCode, RegisterCode regCode, const ValueType* val)
@@ -89,16 +37,16 @@ void VirtualMachine::Show(InstructionCode opCode, RegisterCode regCode, const Va
 	}
 	if (val == nullptr)
 	{
-		std::cout << "VM| OpCode: " << OpCodeStr(opCode) << " Register: " << RegCodeStr(regCode) << std::endl;
+		std::cout << "VM| OpCode: " << Str(opCode) << " Register: " << Str(regCode) << std::endl;
 	}
 	else
 	{
-		std::cout << "VM| OpCode: " << OpCodeStr(opCode) << " Register: " << RegCodeStr(regCode) << " Param:" << *val << std::endl;
+		std::cout << "VM| OpCode: " << Str(opCode) << " Register: " << Str(regCode) << " Param:" << *val << std::endl;
 	}
 }
 void VirtualMachine::Show(InstructionCode opCode, RegisterCode regCode, RegisterCode regCode2)
 {
-	std::cout << "VM| OpCode: " << OpCodeStr(opCode) << " Register: " << RegCodeStr(regCode) << " Register2: " << RegCodeStr(regCode2) << std::endl;
+	std::cout << "VM| OpCode: " << Str(opCode) << " Register: " << Str(regCode) << " Register2: " << Str(regCode2) << std::endl;
 }
 
 VirtualMachine::VirtualMachine(bool traceModeOn): 

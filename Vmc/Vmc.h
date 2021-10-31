@@ -4,44 +4,11 @@
 #include <vector>
 #include <string_view>
 
-
+#include "identifiers.h"
 #include "Stack.h"
 #include "FlagRegister.h"
 
-using VMProgram = std::vector<int>;
-
-#pragma  warning (disable : 26812)
-enum InstructionCode
-{
-	_BEGIN_,
-
-	OUT,	// Print registry value: OUT A;
-	PSH,	// Push value into stack: PSH 42;
-	SUM,	// Sum values in stack;
-	POP,	// Pop value from the top of stack to registry A;
-	SET,	// Set value into registry: SET A 10
-	JMP,	// Skip next N instructions, where N is a parameter: JMP 125;
-	CMP,	// Do signed substruction of the 2nd register value from the 1st one and set ZF and SF flags: CMP A B; 
-	JNE,	// Do JMP N (jump if not equal), if zero equality flag  is FALSE (ZF == 0): JNE 25;
-	JG,		// Do JMP N (jump if greater), if sign flag value in flags register (SF == 1): JG 87;
-	ADD,	// Add value in registry B to value in registry A;
-	HLT,	// stop execution;
-
-	_END_
-};
-
-
-enum RegisterCode
-{
-
-	IP, // instuction pointer
-	SP,	// stack pointer
-	A,
-	B,
-	C,
-
-	NREG
-};
+using VMProgram = std::vector<int64_t>;
 
 class VirtualMachine
 {
